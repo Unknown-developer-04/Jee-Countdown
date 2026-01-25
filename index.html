@@ -18,22 +18,22 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
-            height: 100vh;
+            min-height: 100vh; /* Changed from height to min-height for scrolling on small screens */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            padding: 20px;
+            padding: 15px; /* Reduced padding for mobile */
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* Floating Background Bubbles */
         body::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
             border-radius: 50%;
             top: -150px;
@@ -45,8 +45,8 @@
         body::after {
             content: '';
             position: absolute;
-            width: 450px;
-            height: 450px;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
             border-radius: 50%;
             bottom: -100px;
@@ -73,10 +73,11 @@
             z-index: 1;
             background: rgba(15, 23, 42, 0.65);
             backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 40px;
-            padding: 40px 60px;
+            border-radius: 30px; /* Slightly smaller radius for mobile harmony */
+            padding: 30px 20px; /* Responsive padding */
             border: 2px solid rgba(59, 130, 246, 0.3);
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+            margin: auto;
         }
 
         .container::before {
@@ -85,7 +86,7 @@
             top: -2px; left: -2px; right: -2px; bottom: -2px;
             background: linear-gradient(60deg, #3b82f6, #8b5cf6, #06b6d4, #10b981, #3b82f6);
             background-size: 300% 300%;
-            border-radius: 40px;
+            border-radius: 30px;
             z-index: -1;
             opacity: 0.4;
             animation: borderFlow 8s ease infinite;
@@ -97,7 +98,7 @@
         }
 
         .main-title {
-            font-size: 4.5rem;
+            font-size: clamp(2rem, 8vw, 4.5rem); /* Responsive font size */
             font-weight: 900;
             margin-bottom: 10px;
             background: linear-gradient(45deg, #60a5fa, #c084fc, #22d3ee, #34d399, #60a5fa);
@@ -105,7 +106,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 5s linear infinite;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
         }
 
         @keyframes shimmer {
@@ -114,14 +115,14 @@
         }
 
         .power-quote {
-            font-size: 1.8rem;
+            font-size: clamp(1rem, 4vw, 1.8rem);
             font-weight: 800;
             background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
             animation: pulse 2.5s ease-in-out infinite;
         }
 
@@ -130,15 +131,15 @@
             50% { transform: scale(1.05); }
         }
 
-        .subtitle { font-size: 1.2rem; color: #cbd5e1; margin-bottom: 25px; font-weight: 500; }
+        .subtitle { font-size: 1rem; color: #cbd5e1; margin-bottom: 20px; font-weight: 500; }
 
         .exam-date {
             background: rgba(59, 130, 246, 0.15);
             border: 2px solid rgba(59, 130, 246, 0.4);
             border-radius: 15px;
-            padding: 12px 30px;
-            margin-bottom: 35px;
-            font-size: 1.3rem;
+            padding: 10px 20px;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
             display: inline-block;
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
         }
@@ -146,26 +147,20 @@
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 35px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .countdown-item, .goal-box {
             background: rgba(30, 41, 59, 0.85);
             border: 2px solid rgba(59, 130, 246, 0.5);
-            border-radius: 25px;
-            padding: 25px 15px;
+            border-radius: 20px;
+            padding: 20px 10px;
             transition: all 0.4s ease;
         }
 
-        .countdown-item:hover, .goal-box:hover {
-            transform: translateY(-10px);
-            border-color: #60a5fa;
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-        }
-
         .countdown-number {
-            font-size: 3.5rem;
+            font-size: clamp(1.5rem, 6vw, 3.5rem);
             font-weight: 900;
             background: linear-gradient(180deg, #ffffff, #60a5fa);
             -webkit-background-clip: text;
@@ -173,46 +168,52 @@
             display: block;
         }
 
-        .countdown-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #cbd5e1; font-weight: 600; }
+        .countdown-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; font-weight: 600; }
 
         .motivation {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            min-height: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            min-height: 3rem;
             color: #e0e7ff;
             font-style: italic;
-            transition: opacity 0.5s;
+            padding: 0 10px;
         }
 
-        /* Animation Styling with original sizes and countdown color */
         #line1, #line2 {
             font-weight: 900;
             background: linear-gradient(180deg, #ffffff, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
+            word-wrap: break-word; /* Ensure text wraps on small screens */
         }
 
-        #line1 { font-size: 1.8rem; margin-bottom: 8px; }
-        #line2 { font-size: 1.8rem; }
+        #line1 { font-size: clamp(1.1rem, 4vw, 1.8rem); margin-bottom: 8px; }
+        #line2 { font-size: clamp(1.1rem, 4vw, 1.8rem); }
 
         .cursor {
             display: inline-block;
             width: 3px;
+            height: 1.2rem;
             background-color: #60a5fa;
             margin-left: 5px;
+            vertical-align: middle;
             animation: blink 0.7s infinite;
+        }
+
+        @media (max-width: 600px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2x2 grid for better mobile fit */
+            }
+            .container {
+                padding: 25px 15px;
+            }
+            .main-title { letter-spacing: 1px; }
         }
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
-        }
-
-        @media (max-width: 768px) {
-            .main-title { font-size: 2.5rem; }
-            #line1, #line2 { font-size: 1rem; }
-            .countdown-number { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -250,7 +251,7 @@
         <div class="goal-box">
             <span id="line1"></span>
             <span id="line2"></span><span class="cursor"></span>
-            <div>Required Rank: Under 70 | Your dream is within reach! 💪</div>
+            <div style="margin-top:10px; font-size: 0.9rem;">Required Rank: Under 70 | Your dream is within reach! 💪</div>
         </div>
     </div>
 
@@ -270,11 +271,10 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Ultra Slow Typewriter
         const text1 = "💕 IIT Bombay - CSE.... Hey, Arpan Imagine This 💕";
         const text2 = "ɢᴏ ᴀɴᴅ ꜱᴛᴜᴅʏ ᴛᴏ ᴀᴄʜɪᴇᴠᴇ ᴛʜɪꜱ 🤞 ɢᴏᴏᴅ ʟᴜᴄᴋ 💕";
         
-        const typingSpeed = 150; // Bahut slow typing
+        const typingSpeed = 150; 
         const erasingSpeed = 80;  
         const delayBetween = 3000; 
 
@@ -349,7 +349,6 @@
             "Success is the sum of small efforts, repeated day in and day out! 🔄",
             "Prove them wrong. Show them what Arpan can do! 🔥",
             "IIT Bombay: Imagine the feeling of walking through those gates! 💕"
-
         ];
         let quoteIndex = 0;
         setInterval(() => {
