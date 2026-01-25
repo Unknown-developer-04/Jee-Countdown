@@ -3,39 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEE Countdown Fullscreen</title>
+<title>JEE Countdown • IIT Dream</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-/* ===== FULL SCREEN BASE ===== */
-html, body{
-    width:100%;
-    height:100%;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%}
 
 body{
     font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
-    background-size:400% 400%;
-    animation:bgMove 15s ease infinite;
-    overflow:hidden;
     color:white;
+    overflow:hidden;
+    background:black;
 }
 
-@keyframes bgMove{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+/* ===== VIDEO BACKGROUND ===== */
+video{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    filter:brightness(0.35) saturate(1.2);
 }
 
-/* ===== FULLSCREEN CONTAINER ===== */
+/* ===== DARK OVERLAY ===== */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(2,6,23,.85),
+        rgba(15,23,42,.75),
+        rgba(2,6,23,.9)
+    );
+    z-index:-2;
+}
+
+/* ===== FLOATING IIT IMAGES ===== */
+.iit-img{
+    position:absolute;
+    width:260px;
+    opacity:.18;
+    animation:float 30s ease-in-out infinite;
+    z-index:-1;
+}
+.iit1{top:15%;left:5%}
+.iit2{bottom:10%;right:6%;animation-duration:35s}
+.iit3{top:55%;right:30%;animation-duration:40s}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-60px)}
+}
+
+/* ===== MAIN CONTAINER ===== */
 .container{
     width:100vw;
     height:100vh;
@@ -45,213 +69,187 @@ body{
     justify-content:center;
     align-items:center;
     text-align:center;
-    backdrop-filter:blur(25px);
+    backdrop-filter:blur(20px);
 }
 
-/* ===== TITLES ===== */
-.main-title{
+/* ===== TEXT ===== */
+.title{
     font-size:5rem;
     font-weight:900;
-    background:linear-gradient(45deg,#60a5fa,#c084fc,#22d3ee,#34d399);
-    background-size:300% auto;
+    background:linear-gradient(90deg,#60a5fa,#c084fc,#22d3ee,#34d399);
+    background-size:300%;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    animation:shine 5s linear infinite;
-    margin-bottom:10px;
+    animation:shine 6s linear infinite;
 }
-
 @keyframes shine{
-    0%{background-position:0% center}
-    100%{background-position:300% center}
+    0%{background-position:0%}
+    100%{background-position:300%}
 }
 
-.power-quote{
-    font-size:1.8rem;
-    font-weight:800;
+.quote{
+    font-size:1.6rem;
     color:#fbbf24;
-    margin-bottom:15px;
+    margin:12px 0;
+    letter-spacing:2px;
 }
 
 .subtitle{
-    font-size:1.3rem;
     color:#cbd5e1;
-    margin-bottom:30px;
-}
-
-/* ===== DATE ===== */
-.exam-date{
-    padding:18px 30px;
-    border-radius:20px;
-    background:rgba(59,130,246,0.2);
-    border:2px solid rgba(59,130,246,0.4);
-    margin-bottom:40px;
-    font-size:1.4rem;
+    margin-bottom:35px;
 }
 
 /* ===== COUNTDOWN ===== */
-.countdown-grid{
+.grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:25px;
-    margin-bottom:40px;
+    margin-bottom:35px;
 }
-
-.countdown-item{
-    padding:35px 25px;
-    border-radius:25px;
-    background:rgba(30,41,59,0.75);
-    border:2px solid rgba(59,130,246,0.6);
+.box{
+    padding:32px 24px;
+    border-radius:22px;
+    background:rgba(30,41,59,.75);
+    border:1.5px solid rgba(59,130,246,.6);
+    box-shadow:0 0 35px rgba(59,130,246,.25);
 }
-
-.countdown-number{
-    font-size:4rem;
+.num{
+    font-size:3.6rem;
     font-weight:900;
-    color:#fff;
 }
-
-.countdown-label{
-    font-size:1rem;
+.lbl{
+    font-size:.9rem;
     letter-spacing:2px;
     color:#cbd5e1;
 }
 
 /* ===== MOTIVATION ===== */
 .motivation{
-    padding:25px 35px;
-    border-radius:20px;
-    background:rgba(139,92,246,0.2);
-    border:2px solid rgba(139,92,246,0.4);
-    font-size:1.3rem;
-    margin-bottom:35px;
-    transition:opacity .5s;
+    padding:22px 36px;
+    border-radius:18px;
+    background:rgba(139,92,246,.28);
+    border:1.5px solid rgba(139,92,246,.5);
+    font-size:1.25rem;
+    margin:24px 0;
+    transition:opacity .6s;
 }
 
 /* ===== GOAL ===== */
-.goal-box{
-    padding:30px 35px;
+.goal{
+    padding:26px 36px;
     border-radius:20px;
-    background:rgba(59,130,246,0.25);
-    border:2px solid rgba(59,130,246,0.5);
-    font-size:1.3rem;
+    background:rgba(59,130,246,.3);
+    border:1.5px solid rgba(59,130,246,.6);
+    font-size:1.25rem;
 }
-
-.goal-box strong{
-    font-size:1.6rem;
+.goal strong{
+    font-size:1.5rem;
     display:block;
-    margin-bottom:8px;
 }
 
 /* ===== FULLSCREEN BUTTON ===== */
-#fsBtn{
+#fs{
     position:fixed;
     bottom:20px;
     right:20px;
     padding:12px 18px;
-    border-radius:12px;
     border:none;
+    border-radius:12px;
     background:#3b82f6;
     color:white;
-    font-size:16px;
+    font-size:15px;
     cursor:pointer;
-    z-index:999;
+    z-index:99;
 }
 
 /* ===== MOBILE ===== */
 @media(max-width:768px){
+    .title{font-size:3rem}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .num{font-size:2.6rem}
     .container{padding:30px}
-    .main-title{font-size:3rem}
-    .countdown-grid{grid-template-columns:repeat(2,1fr)}
-    .countdown-number{font-size:2.6rem}
+    .iit-img{display:none}
 }
 </style>
 </head>
 
 <body>
 
+<!-- SUBTLE STUDY VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-night-study-desk-1968/1080p.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- IIT CAMPUS IMAGES -->
+<img class="iit-img iit1" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/IIT_Bombay_campus.jpg">
+<img class="iit-img iit2" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/IIT_Delhi_main_building.jpg">
+<img class="iit-img iit3" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/IIT_Madras.jpg">
+
 <div class="container">
-    <h1 class="main-title">JEE MAIN 2026</h1>
-    <div class="power-quote">Do it now or regret it later</div>
-    <div class="subtitle">Second Attempt – Your Comeback Story</div>
+    <h1 class="title">JEE MAIN 2026</h1>
+    <div class="quote">DO IT NOW OR REGRET IT LATER</div>
+    <div class="subtitle">Second Attempt • Redemption Arc</div>
 
-    <div class="exam-date">📅 JEE Main 2026 – Session 2 (April)</div>
-
-    <div class="countdown-grid">
-        <div class="countdown-item">
-            <div class="countdown-number" id="days">00</div>
-            <div class="countdown-label">DAYS</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="hours">00</div>
-            <div class="countdown-label">HOURS</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="minutes">00</div>
-            <div class="countdown-label">MINUTES</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="seconds">00</div>
-            <div class="countdown-label">SECONDS</div>
-        </div>
+    <div class="grid">
+        <div class="box"><div class="num" id="d">00</div><div class="lbl">DAYS</div></div>
+        <div class="box"><div class="num" id="h">00</div><div class="lbl">HOURS</div></div>
+        <div class="box"><div class="num" id="m">00</div><div class="lbl">MINUTES</div></div>
+        <div class="box"><div class="num" id="s">00</div><div class="lbl">SECONDS</div></div>
     </div>
 
     <div class="motivation" id="motivation">
-        The second attempt is your chance to shine even brighter! 💫
+        Discipline will take you where motivation can't 🔥
     </div>
 
-    <div class="goal-box">
-        <strong>🎯 Target: IIT Bombay – CSE</strong>
-        Required Rank: Under 70
+    <div class="goal">
+        <strong>🎯 IIT Bombay – CSE</strong>
+        Target Rank: Under 70
     </div>
 </div>
 
-<button id="fsBtn">🔳 Full Screen</button>
+<button id="fs">🔳 Full Screen</button>
 
 <script>
-/* ===== COUNTDOWN ===== */
-function updateCountdown(){
-    const examDate = new Date("2026-04-01T09:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = examDate - now;
-
-    if(diff>0){
-        document.getElementById("days").textContent =
-            Math.floor(diff/(1000*60*60*24));
-        document.getElementById("hours").textContent =
-            Math.floor((diff/(1000*60*60))%24);
-        document.getElementById("minutes").textContent =
-            Math.floor((diff/(1000*60))%60);
-        document.getElementById("seconds").textContent =
-            Math.floor((diff/1000)%60);
+/* COUNTDOWN */
+const exam=new Date("2026-04-01T09:00:00").getTime();
+setInterval(()=>{
+    const t=exam-Date.now();
+    if(t>0){
+        d.textContent=Math.floor(t/86400000);
+        h.textContent=Math.floor(t/3600000)%24;
+        m.textContent=Math.floor(t/60000)%60;
+        s.textContent=Math.floor(t/1000)%60;
     }
-}
-updateCountdown();
-setInterval(updateCountdown,1000);
+},1000);
 
-/* ===== FULLSCREEN BUTTON ===== */
-document.getElementById("fsBtn").onclick = ()=>{
-    if(!document.fullscreenElement){
+/* FULLSCREEN */
+fs.onclick=()=>{
+    if(!document.fullscreenElement)
         document.documentElement.requestFullscreen();
-    }else{
-        document.exitFullscreen();
-    }
+    else document.exitFullscreen();
 };
 
-/* ===== MOTIVATION ROTATION ===== */
+/* MORE MOTIVATION LINES */
 const quotes=[
- "Your comeback will be stronger than your setback 💪",
- "Discipline beats motivation 🔥",
- "Every revision brings IIT closer 📈",
- "Regret hurts more than hard work ⚡"
+"Pain of study < Pain of regret ⚡",
+"Consistency creates rank 📈",
+"Mocks today, IIT tomorrow 🧠",
+"You don't need motivation, you need discipline 🔥",
+"Ordinary days create extraordinary ranks 💯",
+"Study while others sleep — IIT waits 🏛️",
+"Your future self is watching you right now 👀",
+"Dream is IIT, price is effort — pay daily ⚔️"
 ];
 let i=0;
 setInterval(()=>{
-    const m=document.getElementById("motivation");
-    m.style.opacity=0;
+    motivation.style.opacity=0;
     setTimeout(()=>{
         i=(i+1)%quotes.length;
-        m.textContent=quotes[i];
-        m.style.opacity=1;
-    },500);
+        motivation.textContent=quotes[i];
+        motivation.style.opacity=1;
+    },600);
 },8000);
 </script>
 
