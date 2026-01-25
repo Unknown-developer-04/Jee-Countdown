@@ -1,1 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Countdown</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 20s ease-in-out infinite;
+            filter: blur(80px);
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 25s ease-in-out infinite reverse;
+            filter: blur(80px);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 30px) scale(1.1); }
+        }
+
+        .container {
+            max-width: 950px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #60a5fa, #c084fc, #22d3ee, #60a5fa);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+            text-shadow: 0 0 40px rgba(96, 165, 250, 0.3);
+            letter-spacing: 2px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        .power-quote {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .power-quote::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #fbbf24, transparent);
+            box-shadow: 0 0 10px #fbbf24;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(1.03); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .exam-date {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            border-radius: 20px;
+            padding: 18px 25px;
+            margin-bottom: 45px;
+            font-size: 1.4rem;
+            color: #bfdbfe;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 5px 20px rgba(59, 130, 246, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .exam-date::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: slide 3s infinite;
+        }
+
+        @keyframes slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+
+        .countdown-item {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.4));
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            border-radius: 20px;
+            padding: 35px 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.7);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.7));
+            box-shadow: 
+                0 15px 40px rgba(59, 130, 246, 0.4),
+                0 0 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .countdown-item:hover::before {
+            opacity: 1;
+        }
+
+        .countdown-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 8px;
+            text-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .motivation {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 25px 35px;
+            margin-bottom: 35px;
+            font-size: 1.3rem;
+            color: #e0e7ff;
+            font-style: italic;
+            transition: opacity 0.5s ease;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .goal-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 20px;
+            padding: 30px 35px;
+            font-size: 1.3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .goal-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: goalShine 4s infinite;
+        }
+
+        @keyframes goalShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .goal-box strong {
+            font-size: 1.6rem;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            .main-title {
+                font-size: 2.8rem;
+            }
+
+            .power-quote {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .countdown-number {
+                font-size: 2.8rem;
+            }
+
+            .motivation {
+                font-size: 1.1rem;
+                padding: 20px 25px;
+            }
+
+            .goal-box {
+                font-size: 1.1rem;
+                padding: 25px;
+            }
+
+            .goal-box strong {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">JEE MAIN 2026</h1>
+        <p class="power-quote">Do it now or regret it later</p>
+        <p class="subtitle">Second Attempt - Your Comeback Story</p>
+        
+        <div class="exam-date">📅 JEE Main 2026 - Session 2: April 2026</div>
+        
+        <div class="countdown-grid">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        
+        <div class="motivation" id="motivation">
+            "The second attempt is your chance to shine even brighter! 💫"
+        </div>
+        
+        <div class="goal-box">
+            <strong>🎯 Target: IIT Bombay - Computer Science</strong>
+            <div>Required Rank: Under 70 | Your dream is within reach! 💪</div>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            try {
+                const examDate = new Date('2026-04-01T09:00:00').getTime();
+                const now = new Date().getTime();
+                const timeLeft = examDate - now;
+                
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                } else {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                }
+            } catch (error) {
+                console.log('Countdown update error:', error);
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        const motivationalQuotes = [
+            "The second attempt is your chance to shine even brighter! 💫",
+            "Every mistake from attempt 1 is a lesson for attempt 2! 📚",
+            "Success is not final, failure is not fatal - keep going! 🚀",
+            "Your comeback will be stronger than your setback! 💪",
+            "This time, you know what to expect. Use it! 🎯",
+            "Champions are made in the second attempt! 🏆",
+            "Learn, adapt, and conquer - that's your strategy! ⚡",
+            "Your IIT Bombay dream is closer than you think! 🌟",
+            "Hard work beats talent when talent doesn't work hard! 🔥",
+            "Every hour of study today is a step closer to IIT Bombay! 📖",
+            "The pain of discipline is less than the pain of regret! 💯",
+            "You didn't come this far to only come this far! 🎓",
+            "Failure is not falling down, it's refusing to get up! 🦾",
+            "Your future self will thank you for the work you do today! ⏰",
+            "Doubt kills more dreams than failure ever will! ✨",
+            "Success is the sum of small efforts repeated daily! 📈",
+            "The expert in anything was once a beginner - keep pushing! 🌱",
+            "Your only limit is the one you set for yourself! 🚫",
+            "Make your parents proud, make yourself proud! 👨‍👩‍👦",
+            "IIT Bombay is not a dream, it's a plan in action! 📋",
+            "Consistency is the key that unlocks every door! 🔑",
+            "Believe in yourself even when nobody else does! 💙",
+            "The comeback is always stronger than the setback! 🎯",
+            "Your revision is your weapon, use it wisely! ⚔️",
+            "Every problem solved is a step towards your goal! 🧮"
+        ];
+
+        let quoteIndex = 0;
+        function rotateMotivation() {
+            const motivationElement = document.getElementById('motivation');
+            motivationElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteIndex = (quoteIndex + 1) % motivationalQuotes.length;
+                motivationElement.textContent = motivationalQuotes[quoteIndex];
+                motivationElement.style.opacity = '1';
+            }, 500);
+        }
+
+        setInterval(rotateMotivation, 8000);
+    </script>
+</body>
+</html>
