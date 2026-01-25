@@ -65,9 +65,8 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Full Screen Container */
         .container {
-            max-width: 1100px; /* Logos hatne ke baad width badha di */
+            max-width: 1100px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -80,7 +79,6 @@
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
         }
 
-        /* Border Flow Animation */
         .container::before {
             content: '';
             position: absolute;
@@ -152,7 +150,7 @@
             margin-bottom: 35px;
         }
 
-        .countdown-item {
+        .countdown-item, .goal-box {
             background: rgba(30, 41, 59, 0.85);
             border: 2px solid rgba(59, 130, 246, 0.5);
             border-radius: 25px;
@@ -160,7 +158,7 @@
             transition: all 0.4s ease;
         }
 
-        .countdown-item:hover {
+        .countdown-item:hover, .goal-box:hover {
             transform: translateY(-10px);
             border-color: #60a5fa;
             box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
@@ -186,27 +184,34 @@
             transition: opacity 0.5s;
         }
 
-        .goal-box {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
-            border: 2px solid rgba(59, 130, 246, 0.6);
-            border-radius: 25px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .goal-box strong {
-            font-size: 1.8rem;
-            background: linear-gradient(to right, #60a5fa, #c084fc);
+        /* Animation Styling with original sizes and countdown color */
+        #line1, #line2 {
+            font-weight: 900;
+            background: linear-gradient(180deg, #ffffff, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
-            margin-bottom: 8px;
+        }
+
+        #line1 { font-size: 1.8rem; margin-bottom: 8px; }
+        #line2 { font-size: 1.8rem; }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #60a5fa;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         @media (max-width: 768px) {
             .main-title { font-size: 2.5rem; }
-            .container { padding: 30px 20px; }
-            .countdown-grid { gap: 10px; }
+            #line1, #line2 { font-size: 1rem; }
             .countdown-number { font-size: 2.2rem; }
         }
     </style>
@@ -243,7 +248,8 @@
         </div>
         
         <div class="goal-box">
-            <strong>🎯 Target: IIT Bombay - Computer Science</strong>
+            <span id="line1"></span>
+            <span id="line2"></span><span class="cursor"></span>
             <div>Required Rank: Under 70 | Your dream is within reach! 💪</div>
         </div>
     </div>
@@ -261,19 +267,90 @@
                 document.getElementById('seconds').textContent = Math.floor((timeLeft % (1000 * 60)) / 1000).toString().padStart(2, '0');
             }
         }
-
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // Ultra Slow Typewriter
+        const text1 = "💕 IIT Bombay - CSE.... Hey, Arpan Imagine This 💕";
+        const text2 = "ɢᴏ ᴀɴᴅ ꜱᴛᴜᴅʏ ᴛᴏ ᴀᴄʜɪᴇᴠᴇ ᴛʜɪꜱ 🤞 ɢᴏᴏᴅ ʟᴜᴄᴋ 💕";
+        
+        const typingSpeed = 150; // Bahut slow typing
+        const erasingSpeed = 80;  
+        const delayBetween = 3000; 
+
+        let charIndex = 0;
+        let isErasing = false;
+        const line1 = document.getElementById("line1");
+        const line2 = document.getElementById("line2");
+
+        function type() {
+            const fullText = text1 + text2;
+            if (!isErasing && charIndex < fullText.length) {
+                if (charIndex < text1.length) {
+                    line1.textContent += text1.charAt(charIndex);
+                } else {
+                    line2.textContent += text2.charAt(charIndex - text1.length);
+                }
+                charIndex++;
+                setTimeout(type, typingSpeed);
+            } else if (isErasing && charIndex > 0) {
+                if (charIndex > text1.length) {
+                    line2.textContent = text2.substring(0, charIndex - text1.length - 1);
+                } else {
+                    line1.textContent = text1.substring(0, charIndex - 1);
+                }
+                charIndex--;
+                setTimeout(type, erasingSpeed);
+            } else {
+                isErasing = !isErasing;
+                setTimeout(type, delayBetween);
+            }
+        }
+        setTimeout(type, 1000);
+
         const motivationalQuotes = [
             "The second attempt is your chance to shine even brighter! 💫",
+            "Your comeback will be stronger than your setback! 💪",
+            "IIT Bombay is not a dream, it's a plan in action! 📋",
+            "Every great success story has a comeback chapter! 📖",
+            "Believe in yourself, because IIT Bombay believes in you! 🌟",
             "Every mistake from attempt 1 is a lesson for attempt 2! 📚",
             "Your comeback will be stronger than your setback! 💪",
             "IIT Bombay is not a dream, it's a plan in action! 📋",
             "Consistency is the key that unlocks every door! 🔑",
-            "The pain of discipline is less than the pain of regret! 💯"
-        ];
+            "The pain of discipline is less than the pain of regret! 💯",
+            "Success is not for the lazy; it's for the obsessed! 🔥",
+            "IIT Bombay doesn't want your excuses, it wants your hard work! 🏔️",
+            "Study like there is no tomorrow, because your future depends on today! 📖",
+            "Your rank is a reflection of your discipline, not just your luck! 🎯",
+            "Push yourself, because no one else is going to do it for you! 💪",
+            "Small steps every day lead to big results on exam day! 📈",
+            "Don't wish for it, work for it until it becomes yours! ✨",
+            "A JEE aspirant's best friend is their consistency! 🤝",
+            "Wake up with determination. Go to bed with satisfaction! 🌅",
+            "The struggle you're in today is developing the strength you need for tomorrow! 🏋️",
+            "Mistakes are proof that you are trying. Keep solving! 📝",
+            "Silence the critics with your results, not your words! 🤫",
+            "Focus on the goal, not the obstacles. IIT is waiting! 🏰",
+            "Hard work beats talent when talent doesn't work hard! 💯",
+            "You are just one mock test away from improving your future! 📊",
+            "Don't stop until you are proud of your AIR! 🎖️",
+            "The harder you work for something, the greater you'll feel when you achieve it! 🏆",
+            "Your only limit is your mind. Break the boundaries! 🧠",
+            "Dream big, work hard, stay focused, and surround yourself with good books! 📚",
+            "Success starts with self-discipline! 🧘",
+            "Be stronger than your strongest excuse! ⚡",
+            "The expert in anything was once a beginner. Keep practicing! 🎓",
+            "Your future self is watching you right now through your memories. Make them proud! 🎞️",
+            "Discipline is doing what needs to be done, even if you don't want to! ⏳",
+            "Every problem you solve brings you one kilometer closer to IIT! 🏎️",
+            "Don't count the days, make the days count! 🗓️",
+            "The secret of getting ahead is getting started! 🚀",
+            "Success is the sum of small efforts, repeated day in and day out! 🔄",
+            "Prove them wrong. Show them what Arpan can do! 🔥",
+            "IIT Bombay: Imagine the feeling of walking through those gates! 💕"
 
+        ];
         let quoteIndex = 0;
         setInterval(() => {
             const motivationElement = document.getElementById('motivation');
