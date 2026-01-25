@@ -18,14 +18,14 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
-            min-height: 100vh; /* Fixed: min-height for mobile scrolling */
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             padding: 20px;
             position: relative;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow: hidden;
         }
 
         /* Floating Background Bubbles */
@@ -40,7 +40,6 @@
             right: -150px;
             animation: float 15s ease-in-out infinite;
             filter: blur(80px);
-            z-index: 0;
         }
 
         body::after {
@@ -54,7 +53,6 @@
             left: -100px;
             animation: float 20s ease-in-out infinite reverse;
             filter: blur(80px);
-            z-index: 0;
         }
 
         @keyframes float {
@@ -180,12 +178,13 @@
         .motivation {
             font-size: 1.3rem;
             margin-bottom: 30px;
-            min-height: 2.5rem; /* Increased slightly for mobile */
+            min-height: 2rem;
             color: #e0e7ff;
             font-style: italic;
             transition: opacity 0.5s;
         }
 
+        /* Animation Styling with original sizes and countdown color */
         #line1, #line2 {
             font-weight: 900;
             background: linear-gradient(180deg, #ffffff, #60a5fa);
@@ -210,36 +209,10 @@
             50% { opacity: 0; }
         }
 
-        /* Responsive Fixes */
         @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
-                border-radius: 25px;
-            }
-            .container::before { border-radius: 25px; }
-            
-            .main-title { font-size: 2.2rem; letter-spacing: 2px; }
-            .power-quote { font-size: 1rem; letter-spacing: 2px; }
-            .subtitle { font-size: 0.9rem; }
-            .exam-date { font-size: 1rem; padding: 10px 20px; }
-            
-            .countdown-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2x2 grid for mobile */
-                gap: 15px;
-            }
-            .countdown-number { font-size: 2rem; }
-            .countdown-item { padding: 15px 5px; }
-
-            .motivation { font-size: 1rem; }
-            
-            #line1, #line2 { font-size: 1.1rem; }
-            .goal-box { padding: 20px 15px; font-size: 0.85rem; }
-        }
-
-        @media (max-width: 380px) {
-            .main-title { font-size: 1.8rem; }
-            .countdown-grid { gap: 10px; }
-            .countdown-number { font-size: 1.8rem; }
+            .main-title { font-size: 2.5rem; }
+            #line1, #line2 { font-size: 1rem; }
+            .countdown-number { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -277,7 +250,7 @@
         <div class="goal-box">
             <span id="line1"></span>
             <span id="line2"></span><span class="cursor"></span>
-            <div style="margin-top: 10px;">Required Rank: Under 70 | Your dream is within reach! 💪</div>
+            <div>Required Rank: Under 70 | Your dream is within reach! 💪</div>
         </div>
     </div>
 
@@ -297,10 +270,11 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // Ultra Slow Typewriter
         const text1 = "💕 IIT Bombay - CSE.... Hey, Arpan Imagine This 💕";
         const text2 = "ɢᴏ ᴀɴᴅ ꜱᴛᴜᴅʏ ᴛᴏ ᴀᴄʜɪᴇᴠᴇ ᴛʜɪꜱ 🤞 ɢᴏᴏᴅ ʟᴜᴄᴋ 💕";
         
-        const typingSpeed = 150;
+        const typingSpeed = 150; // Bahut slow typing
         const erasingSpeed = 80;  
         const delayBetween = 3000; 
 
@@ -341,6 +315,8 @@
             "Every great success story has a comeback chapter! 📖",
             "Believe in yourself, because IIT Bombay believes in you! 🌟",
             "Every mistake from attempt 1 is a lesson for attempt 2! 📚",
+            "Your comeback will be stronger than your setback! 💪",
+            "IIT Bombay is not a dream, it's a plan in action! 📋",
             "Consistency is the key that unlocks every door! 🔑",
             "The pain of discipline is less than the pain of regret! 💯",
             "Success is not for the lazy; it's for the obsessed! 🔥",
@@ -373,6 +349,7 @@
             "Success is the sum of small efforts, repeated day in and day out! 🔄",
             "Prove them wrong. Show them what Arpan can do! 🔥",
             "IIT Bombay: Imagine the feeling of walking through those gates! 💕"
+
         ];
         let quoteIndex = 0;
         setInterval(() => {
