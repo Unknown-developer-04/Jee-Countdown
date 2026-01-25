@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +55,32 @@
             filter: blur(80px);
         }
 
+        .bg-iit-bombay {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            height: 180px;
+            background: url('https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg/1200px-Indian_Institute_of_Technology_Bombay_Logo.svg.png') center/contain no-repeat;
+            opacity: 0.08;
+            filter: blur(1px);
+            z-index: 0;
+        }
+
+        .bg-iit-delhi {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            height: 180px;
+            background: url('https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg/1200px-Indian_Institute_of_Technology_Delhi_Logo.svg.png') center/contain no-repeat;
+            opacity: 0.08;
+            filter: blur(1px);
+            z-index: 0;
+        }
+
         @keyframes gradientMove {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -70,28 +97,68 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.4));
+            backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 35px;
+            padding: 55px 45px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 25px 70px rgba(0, 0, 0, 0.6),
+                0 0 80px rgba(59, 130, 246, 0.15),
+                inset 0 2px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(60deg, #3b82f6, #8b5cf6, #06b6d4, #10b981, #3b82f6);
+            background-size: 300% 300%;
+            border-radius: 35px;
+            z-index: -1;
+            opacity: 0.4;
+            animation: borderFlow 8s ease infinite;
+            filter: blur(15px);
+        }
+
+        @keyframes borderFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .main-title {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 900;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #60a5fa, #c084fc, #22d3ee, #60a5fa);
+            background: linear-gradient(45deg, #60a5fa, #c084fc, #22d3ee, #34d399, #60a5fa);
             background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 4s linear infinite;
-            text-shadow: 0 0 40px rgba(96, 165, 250, 0.3);
-            letter-spacing: 2px;
+            animation: shimmer 5s linear infinite;
+            filter: drop-shadow(0 0 40px rgba(96, 165, 250, 0.4));
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .main-title::before {
+            content: 'JEE MAIN 2026';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(45deg, #60a5fa, #c084fc, #22d3ee, #34d399, #60a5fa);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(15px);
+            opacity: 0.5;
+            animation: shimmer 5s linear infinite;
+            z-index: -1;
         }
 
         @keyframes shimmer {
@@ -100,34 +167,42 @@
         }
 
         .power-quote {
-            font-size: 1.6rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            animation: pulse 2.5s ease-in-out infinite, goldShimmer 3s linear infinite;
             position: relative;
+            filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.5));
         }
 
         .power-quote::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #fbbf24, transparent);
-            box-shadow: 0 0 10px #fbbf24;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #fbbf24, #f59e0b, #fbbf24, transparent);
+            box-shadow: 0 0 15px #fbbf24;
+            border-radius: 10px;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.95; transform: scale(1.03); }
+            50% { opacity: 0.95; transform: scale(1.04); }
+        }
+
+        @keyframes goldShimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .subtitle {
@@ -177,14 +252,14 @@
         }
 
         .countdown-item {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.4));
-            border: 2px solid rgba(59, 130, 246, 0.4);
-            border-radius: 20px;
-            padding: 35px 25px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.5));
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 25px;
+            padding: 40px 25px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
 
         .countdown-item::before {
@@ -194,34 +269,51 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.2));
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.3));
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s ease;
+        }
+
+        .countdown-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
         }
 
         .countdown-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(59, 130, 246, 0.7);
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.7));
+            transform: translateY(-12px) scale(1.03);
+            border-color: rgba(59, 130, 246, 0.8);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.8));
             box-shadow: 
-                0 15px 40px rgba(59, 130, 246, 0.4),
-                0 0 30px rgba(59, 130, 246, 0.2);
+                0 20px 50px rgba(59, 130, 246, 0.5),
+                0 0 40px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .countdown-item:hover::before {
             opacity: 1;
         }
 
+        .countdown-item:hover::after {
+            left: 100%;
+        }
+
         .countdown-number {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
-            background: linear-gradient(180deg, #60a5fa, #3b82f6);
+            background: linear-gradient(180deg, #ffffff, #60a5fa, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: block;
-            margin-bottom: 8px;
-            text-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.7));
             position: relative;
             z-index: 1;
         }
@@ -294,12 +386,17 @@
             }
 
             .main-title {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
 
             .power-quote {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 letter-spacing: 2px;
+            }
+
+            .bg-iit-bombay,
+            .bg-iit-delhi {
+                display: none;
             }
 
             .countdown-grid {
@@ -328,6 +425,9 @@
     </style>
 </head>
 <body>
+    <div class="bg-iit-bombay"></div>
+    <div class="bg-iit-delhi"></div>
+    
     <div class="container">
         <h1 class="main-title">JEE MAIN 2026</h1>
         <p class="power-quote">Do it now or regret it later</p>
