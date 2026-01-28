@@ -3,313 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Countdown</title>
+    <title>JEE MAIN 2026 - ARPAN</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
-            min-height: 100vh; /* Changed from height to min-height for scrolling on small screens */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            padding: 15px; /* Reduced padding for mobile */
-            position: relative;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            color: white; padding: 15px; position: relative; overflow-x: hidden;
         }
 
-        /* Floating Background Bubbles */
+        @keyframes gradientMove { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
         body::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
+            content: ''; position: absolute; width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
-            border-radius: 50%;
-            top: -150px;
-            right: -150px;
-            animation: float 15s ease-in-out infinite;
-            filter: blur(80px);
+            border-radius: 50%; top: -150px; right: -150px; animation: float 15s ease-in-out infinite; filter: blur(80px);
         }
-
         body::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
+            content: ''; position: absolute; width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
-            border-radius: 50%;
-            bottom: -100px;
-            left: -100px;
-            animation: float 20s ease-in-out infinite reverse;
-            filter: blur(80px);
+            border-radius: 50%; bottom: -100px; left: -100px; animation: float 20s ease-in-out infinite reverse; filter: blur(80px);
         }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, 30px) scale(1.1); }
-        }
-
-        @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+        @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, 30px) scale(1.1); } }
 
         .container {
-            max-width: 1100px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 30px; /* Slightly smaller radius for mobile harmony */
-            padding: 30px 20px; /* Responsive padding */
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
-            margin: auto;
+            max-width: 1100px; width: 100%; text-align: center; position: relative; z-index: 1;
+            background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 30px; padding: 40px 20px; border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6); margin: 20px auto;
         }
 
         .container::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
             background: linear-gradient(60deg, #3b82f6, #8b5cf6, #06b6d4, #10b981, #3b82f6);
-            background-size: 300% 300%;
-            border-radius: 30px;
-            z-index: -1;
-            opacity: 0.4;
-            animation: borderFlow 8s ease infinite;
+            background-size: 300% 300%; border-radius: 30px; z-index: -1; opacity: 0.4; animation: borderFlow 8s ease infinite;
         }
-
-        @keyframes borderFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+        @keyframes borderFlow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
         .main-title {
-            font-size: clamp(2rem, 8vw, 4.5rem); /* Responsive font size */
-            font-weight: 900;
-            margin-bottom: 10px;
+            font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 900;
             background: linear-gradient(45deg, #60a5fa, #c084fc, #22d3ee, #34d399, #60a5fa);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 5s linear infinite;
-            letter-spacing: 2px;
+            background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite; letter-spacing: 2px;
         }
-
-        @keyframes shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
-        }
+        @keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
 
         .power-quote {
-            font-size: clamp(1rem, 4vw, 1.8rem);
-            font-weight: 800;
+            font-size: clamp(1rem, 4vw, 1.8rem); font-weight: 800;
             background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
             animation: pulse 2.5s ease-in-out infinite;
         }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 25px 0; }
+        .item-box {
+            background: rgba(30, 41, 59, 0.85); border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 20px; padding: 20px 10px; transition: 0.3s;
         }
-
-        .subtitle { font-size: 1rem; color: #cbd5e1; margin-bottom: 20px; font-weight: 500; }
-
-        .exam-date {
-            background: rgba(59, 130, 246, 0.15);
-            border: 2px solid rgba(59, 130, 246, 0.4);
-            border-radius: 15px;
-            padding: 10px 20px;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            display: inline-block;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-        }
-
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .countdown-item, .goal-box {
-            background: rgba(30, 41, 59, 0.85);
-            border: 2px solid rgba(59, 130, 246, 0.5);
-            border-radius: 20px;
-            padding: 20px 10px;
-            transition: all 0.4s ease;
-        }
-
         .countdown-number {
-            font-size: clamp(1.5rem, 6vw, 3.5rem);
-            font-weight: 900;
+            font-size: clamp(1.5rem, 6vw, 3.5rem); font-weight: 900;
             background: linear-gradient(180deg, #ffffff, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .countdown-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; font-weight: 600; }
-
-        .motivation {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            min-height: 3rem;
-            color: #e0e7ff;
-            font-style: italic;
-            padding: 0 10px;
+        .target-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; perspective: 1000px; }
+        .subject-card {
+            background: rgba(30, 41, 59, 0.85); border: 2px solid rgba(59, 130, 246, 0.4);
+            border-radius: 20px; padding: 20px; text-align: left; transition: all 0.5s ease; position: relative; overflow: hidden;
+        }
+        .subject-card.zoom-focus {
+            transform: scale(1.05) translateY(-5px);
+            border-color: #fbbf24;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+            z-index: 10;
         }
 
-        #line1, #line2 {
-            font-weight: 900;
-            background: linear-gradient(180deg, #ffffff, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            word-wrap: break-word; /* Ensure text wraps on small screens */
+        .task-list { list-style: none; margin-top: 15px; }
+        .task-item {
+            background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; margin-bottom: 10px;
+            border-left: 4px solid #3b82f6; transition: 0.3s; cursor: pointer;
+        }
+        .task-item.active { background: rgba(251, 191, 36, 0.1); border-left-color: #fbbf24; }
+        .task-item.done { border-left-color: #10b981; opacity: 0.6; }
+
+        .cb-container { width: 22px; height: 22px; position: relative; cursor: pointer; }
+        .cb-container input { display: none; }
+        .checkmark {
+            position: absolute; top: 0; left: 0; height: 22px; width: 22px;
+            border: 2px solid #3b82f6; border-radius: 6px; transition: 0.3s;
+        }
+        .cb-container input:checked ~ .checkmark { background: #10b981; border-color: #10b981; box-shadow: 0 0 10px #10b981; }
+        .checkmark:after {
+            content: ""; position: absolute; display: none; left: 7px; top: 2px;
+            width: 5px; height: 11px; border: solid white; border-width: 0 3px 3px 0; transform: rotate(45deg);
+        }
+        .cb-container input:checked ~ .checkmark:after { display: block; }
+
+        .typing-box {
+            margin-top: 40px; background: rgba(30, 41, 59, 0.85); border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 20px; padding: 25px 15px; min-height: 120px;
+        }
+        #line1, #line2 { font-weight: 900; background: linear-gradient(180deg, #ffffff, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: clamp(1rem, 3.5vw, 1.8rem); }
+        .cursor { display: inline-block; width: 3px; height: 1.2rem; background-color: #60a5fa; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .input-field { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(59,130,246,0.5); border-radius: 8px; padding: 10px; color: white; margin-bottom: 8px; outline: none; }
+
+        /* INTEGRATED ALARM BOX STYLE FROM 8.HTML */
+        #alarm-box {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); z-index: 10000;
+            display: none; align-items: center; justify-content: center; flex-direction: column;
+            backdrop-filter: blur(15px);
         }
 
-        #line1 { font-size: clamp(1.1rem, 4vw, 1.8rem); margin-bottom: 8px; }
-        #line2 { font-size: clamp(1.1rem, 4vw, 1.8rem); }
+        #report-dashboard {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f172a; z-index: 9999; padding: 20px; overflow-y: auto;
+        }
+        .report-container { max-width: 1100px; margin: 0 auto; background: transparent; padding: 20px; }
+        .analytics-grid-premium { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 25px 0; }
+        .stat-card-premium { 
+            background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px 15px; border-radius: 18px; text-align: center;
+        }
+        .stat-card-premium .title { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #94a3b8; font-weight: 600; }
+        .stat-card-premium .value { font-size: 22px; font-weight: 900; color: #fbbf24; display: block; margin-top: 8px; }
 
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1.2rem;
-            background-color: #60a5fa;
-            margin-left: 5px;
-            vertical-align: middle;
-            animation: blink 0.7s infinite;
+        .subject-stats-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .sub-stat-card { background: rgba(30, 41, 59, 0.3); border-radius: 15px; padding: 15px; border-top: 3px solid #3b82f6; }
+        .sub-stat-card h4 { font-size: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .sub-topic-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; opacity: 0.8; }
+
+        .done-pill {
+            display: none; background: #10b981; color: white; padding: 4px 14px;
+            border-radius: 12px; font-size: 11px; font-weight: 900; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); animation: popIn 0.3s forwards;
         }
 
-        @media (max-width: 600px) {
-            .countdown-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2x2 grid for better mobile fit */
-            }
-            .container {
-                padding: 25px 15px;
-            }
-            .main-title { letter-spacing: 1px; }
+        .report-btn-animated {
+            margin-top: 30px; padding: 20px 50px; font-weight: 900; font-size: 1.1rem;
+            color: white; background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+            background-size: 200% auto; border: none; border-radius: 25px; cursor: pointer;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); transition: 0.5s;
+            animation: gradientShift 3s infinite alternate, pulseButton 2s infinite;
+            text-transform: uppercase; letter-spacing: 1px;
         }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        @keyframes pulseButton { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+        .report-btn-animated:hover { transform: translateY(-5px) scale(1.02); }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        @media (max-width: 768px) { 
+            .target-grid, .analytics-grid-premium, .subject-stats-container { grid-template-columns: 1fr; } 
+            .countdown-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
-<body>
+<body onclick="initAudio()">
+
+    <audio id="alarm-snd" loop src="https://audio-previews.elements.envatousercontent.com/files/286545509/preview.mp3"></audio>
+
+    <div id="alarm-box">
+        <h1 style="color: #fbbf24; font-size: clamp(2rem, 10vw, 4rem); text-align: center; font-weight:900;">⏰ MISSION DONE! ⏰</h1>
+        <p style="margin: 20px; font-size: 1.5rem; color: #fff;">Arpan, IIT Bombay is one step closer!</p>
+        <button onclick="stopAlarm()" style="padding: 15px 50px; background: #ef4444; color: white; border: none; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);">STOP ALARM</button>
+    </div>
+
+    <div id="report-dashboard">
+        <div class="report-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                <h1 style="font-weight:900; font-size: 2.2rem; background:linear-gradient(to right, #60a5fa, #c084fc); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">MISSION ANALYTICS</h1>
+                <button onclick="document.getElementById('report-dashboard').style.display='none'" style="background:#ef4444; color:white; border:none; padding:8px 20px; border-radius:8px; cursor:pointer; font-weight:900; font-size:12px;">CLOSE EXIT</button>
+            </div>
+            <p style="color: #94a3b8; font-size: 12px; margin-top: -25px; margin-bottom: 30px;">Real-time performance tracking for JEE 26 ARPAN</p>
+            <div id="report-content"></div>
+        </div>
+    </div>
+
     <div class="container">
         <h1 class="main-title">JEE MAIN 2026</h1>
         <p class="power-quote">Do it now or regret it later</p>
-        <p class="subtitle">Second Attempt - Your Comeback Story</p>
+        <p class="subtitle">Second Attempt - Your Comeback Story</p><br>
         
-        <div class="exam-date">📅 Session 2: April 2026</div>
-        
-        <div class="countdown-grid">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Days</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
-            </div>
+        <div style="background: rgba(59, 130, 246, 0.15); border: 2px solid rgba(59, 130, 246, 0.4); border-radius: 15px; padding: 10px 20px; display: inline-block; margin-bottom: 20px; font-weight: 600;">
+            📅 Session 2: April 2026
         </div>
-        
-        <div class="motivation" id="motivation">
+
+        <div class="countdown-grid">
+            <div class="item-box"><span class="countdown-number" id="days">00</span><br><small>DAYS</small></div>
+            <div class="item-box"><span class="countdown-number" id="hours">00</span><br><small>HOURS</small></div>
+            <div class="item-box"><span class="countdown-number" id="minutes">00</span><br><small>MINS</small></div>
+            <div class="item-box"><span class="countdown-number" id="seconds">00</span><br><small>SECS</small></div>
+        </div>
+
+        <div id="motivation" style="font-style: italic; min-height: 3rem; margin-bottom: 20px; color: #cbd5e1; transition: 0.5s;">
             "The second attempt is your chance to shine even brighter! 💫"
         </div>
-        
-        <div class="goal-box">
-            <span id="line1"></span>
-            <span id="line2"></span> 
-        
+
+        <div class="target-grid">
+            <div class="subject-card" id="card-p">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="color: #60a5fa; font-weight: 900;">PHYSICS</h3>
+                    <span id="badge-p" class="done-pill">DONE</span>
+                </div>
+                <input type="text" id="p-t" class="input-field" style="margin-top: 15px;" placeholder="What topic?">
+                <input type="number" id="p-m" class="input-field" placeholder="Mins...">
+                <button onclick="add('p')" style="width:100%; padding:12px; background:linear-gradient(45deg, #3b82f6, #8b5cf6); border:none; border-radius:10px; color:white; font-weight:900; cursor:pointer;">ADD MISSION</button>
+                <ul id="p-list" class="task-list"></ul>
+            </div>
+            <div class="subject-card" id="card-c">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="color: #10b981; font-weight: 900;">CHEMISTRY</h3>
+                    <span id="badge-c" class="done-pill">DONE</span>
+                </div>
+                <input type="text" id="c-t" class="input-field" style="margin-top: 15px;" placeholder="What topic?">
+                <input type="number" id="c-m" class="input-field" placeholder="Mins...">
+                <button onclick="add('c')" style="width:100%; padding:12px; background:linear-gradient(45deg, #3b82f6, #8b5cf6); border:none; border-radius:10px; color:white; font-weight:900; cursor:pointer;">ADD MISSION</button>
+                <ul id="c-list" class="task-list"></ul>
+            </div>
+            <div class="subject-card" id="card-m">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="color: #f59e0b; font-weight: 900;">MATHS</h3>
+                    <span id="badge-m" class="done-pill">DONE</span>
+                </div>
+                <input type="text" id="m-t" class="input-field" style="margin-top: 15px;" placeholder="What topic?">
+                <input type="number" id="m-m" class="input-field" placeholder="Mins...">
+                <button onclick="add('m')" style="width:100%; padding:12px; background:linear-gradient(45deg, #3b82f6, #8b5cf6); border:none; border-radius:10px; color:white; font-weight:900; cursor:pointer;">ADD MISSION</button>
+                <ul id="m-list" class="task-list"></ul>
+            </div>
+        </div>
+
+        <button onclick="openAdvancedReport()" class="report-btn-animated">⚡ OPEN WEEKLY ANALYSIS DASHBOARD</button>
+
+        <div class="typing-box">
+            <span id="line1"></span><br><span id="line2"></span>
             <div style="margin-top:10px; font-size: 0.9rem;">Required Rank: Under 70 | Your dream is within reach! 💪</div>
         </div>
     </div>
 
     <script>
-        function updateCountdown() {
-            const examDate = new Date('2026-04-01T09:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = examDate - now;
-            
-            if (timeLeft > 0) {
-                document.getElementById('days').textContent = Math.floor(timeLeft / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById('hours').textContent = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = Math.floor((timeLeft % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        // INTEGRATED ALARM CONTROLS FROM 8.HTML
+        const snd = document.getElementById('alarm-snd');
+        function stopAlarm() { document.getElementById('alarm-box').style.display='none'; snd.pause(); snd.currentTime=0; }
+
+        let audioInitialized = false;
+        function initAudio() {
+            if(!audioInitialized) {
+                snd.play().then(() => {
+                    snd.pause();
+                    snd.currentTime = 0;
+                    audioInitialized = true;
+                }).catch(e => console.log("Init audio failed"));
             }
         }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
 
-        const text1 = "💕 IIT Bombay - CSE.... Hey, Arpan Imagine This 💕";
-        const text2 = "ɢᴏ ᴀɴᴅ ꜱᴛᴜᴅʏ ᴛᴏ ᴀᴄʜɪᴇᴠᴇ ᴛʜɪꜱ 🤞 ɢᴏᴏᴅ ʟᴜᴄᴋ 💕";
-        
-        const typingSpeed = 150; 
-        const erasingSpeed = 80;  
-        const delayBetween = 3000; 
-
-        let charIndex = 0;
-        let isErasing = false;
-        const line1 = document.getElementById("line1");
-        const line2 = document.getElementById("line2");
-
-        function type() {
-            const fullText = text1 + text2;
-            if (!isErasing && charIndex < fullText.length) {
-                if (charIndex < text1.length) {
-                    line1.textContent += text1.charAt(charIndex);
-                } else {
-                    line2.textContent += text2.charAt(charIndex - text1.length);
-                }
-                charIndex++;
-                setTimeout(type, typingSpeed);
-            } else if (isErasing && charIndex > 0) {
-                if (charIndex > text1.length) {
-                    line2.textContent = text2.substring(0, charIndex - text1.length - 1);
-                } else {
-                    line1.textContent = text1.substring(0, charIndex - 1);
-                }
-                charIndex--;
-                setTimeout(type, erasingSpeed);
-            } else {
-                isErasing = !isErasing;
-                setTimeout(type, delayBetween);
+        function updateExamTimer() {
+            const diff = new Date('2026-04-01T00:00:00') - new Date();
+            if(diff > 0) {
+                document.getElementById('days').innerText = Math.floor(diff/86400000).toString().padStart(2,'0');
+                document.getElementById('hours').innerText = Math.floor((diff/3600000)%24).toString().padStart(2,'0');
+                document.getElementById('minutes').innerText = Math.floor((diff/60000)%60).toString().padStart(2,'0');
+                document.getElementById('seconds').innerText = Math.floor((diff/1000)%60).toString().padStart(2,'0');
             }
         }
-        setTimeout(type, 1000);
+        setInterval(updateExamTimer, 1000);
 
-        const motivationalQuotes = [
+        let tickInts = {};
+
+        function add(s) {
+            const t=document.getElementById(s+'-t'), m=document.getElementById(s+'-m');
+            if(!t.value || !m.value) return;
+            const k=new Date().toLocaleDateString(), d=JSON.parse(localStorage.getItem('arpan_v5')||'{}');
+            if(!d[k]) d[k]={p:[],c:[],m:[]};
+            d[k][s].push({txt:t.value, sec:m.value*60, originalSec: m.value*60, done:false, run:false});
+            localStorage.setItem('arpan_v5', JSON.stringify(d));
+            t.value=''; m.value=''; render();
+        }
+
+        function toggle(s, i) {
+            const k=new Date().toLocaleDateString(), d=JSON.parse(localStorage.getItem('arpan_v5')||'{}');
+            const item = d[k][s][i]; if(item.done) return;
+            item.run = !item.run;
+            localStorage.setItem('arpan_v5', JSON.stringify(d));
+            render();
+        }
+
+        function finish(e, s, i) {
+            e.stopPropagation();
+            const k=new Date().toLocaleDateString(), d=JSON.parse(localStorage.getItem('arpan_v5')||'{}');
+            d[k][s][i].done = !d[k][s][i].done; d[k][s][i].run = false;
+            localStorage.setItem('arpan_v5', JSON.stringify(d));
+            render();
+        }
+
+        // UPDATED TRIGGER TO USE 8.HTML BOX
+        function triggerAlarm() {
+            document.getElementById('alarm-box').style.display = 'flex';
+            snd.currentTime = 0;
+            snd.play();
+        }
+
+        function render() {
+            const k=new Date().toLocaleDateString(), d=JSON.parse(localStorage.getItem('arpan_v5')||'{}');
+            Object.values(tickInts).forEach(clearInterval);
+            ['p','c','m'].forEach(s => {
+                const list=document.getElementById(s+'-list'), card=document.getElementById('card-'+s), badge=document.getElementById('badge-'+s);
+                list.innerHTML=''; let activeAny = false; 
+                let subData = (d[k] && d[k][s]) ? d[k][s] : [];
+
+                if(subData.length > 0 && subData.every(it => it.done)) badge.style.display = 'block';
+                else badge.style.display = 'none';
+
+                subData.forEach((item, i) => {
+                    if(item.run) activeAny = true;
+                    const timeStr = `${Math.floor(item.sec/60)}:${(item.sec%60).toString().padStart(2,'0')}`;
+                    const li=document.createElement('li');
+                    li.className=`task-item ${item.done?'done':''} ${item.run?'active':''}`;
+                    li.onclick=()=>toggle(s,i);
+                    li.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-weight:600;">${i+1}. ${item.txt} <small style="display:block; opacity:0.6;">(Set: ${Math.floor(item.originalSec/60)}m)</small></span>
+                        <label class="cb-container" onclick="event.stopPropagation()">
+                            <input type="checkbox" ${item.done?'checked':''} onchange="finish(event,'${s}',${i})">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div><div style="color:#fbbf24;font-weight:900;margin-top:5px;font-size:0.9rem;">${item.done?'✅ MISSION COMPLETED':(item.run?'⏳ '+timeStr:'▶ START MISSION')}</div>`;
+                    list.appendChild(li);
+
+                    if(item.run && item.sec>0) {
+                        tickInts[`${s}-${i}`] = setInterval(() => {
+                            item.sec--; 
+                            if(item.sec <= 0) {
+                                item.run = false;
+                                item.done = true; // Mark as done when timer ends
+                                triggerAlarm();
+                            }
+                            localStorage.setItem('arpan_v5', JSON.stringify(d)); render();
+                        }, 1000);
+                    }
+                });
+                if(activeAny) card.classList.add('zoom-focus'); else card.classList.remove('zoom-focus');
+            });
+        }
+
+        function openAdvancedReport() {
+            const d=JSON.parse(localStorage.getItem('arpan_v5')||'{}');
+            const content = document.getElementById('report-content');
+            let html = "";
+            const dates = Object.keys(d).sort((a,b)=>new Date(b)-new Date(a)).slice(0, 7);
+
+            if(dates.length === 0) { html = "<div style='text-align:center; padding:60px; color:#94a3b8;'>No mission logs.</div>"; } 
+            else {
+                dates.forEach(date => {
+                    let totalMins = 0, doneCount = 0, totalCount = 0;
+                    let subTime = {p:0, c:0, m:0};
+                    let toughest = {name: 'None', time: 0};
+                    let subjectsData = { p: [], c: [], m: [] };
+
+                    ['p','c','m'].forEach(s => {
+                        (d[date][s] || []).forEach(i => {
+                            totalCount++; if(i.done) doneCount++;
+                            let m = i.originalSec/60;
+                            totalMins += m; subTime[s] += m;
+                            subjectsData[s].push({name: i.txt, time: m});
+                            if(m > toughest.time) toughest = {name: i.txt, time: m};
+                        });
+                    });
+
+                    const eff = totalCount === 0 ? 0 : Math.round((doneCount/totalCount)*100);
+                    const dominator = subTime.p >= subTime.c && subTime.p >= subTime.m ? 'Physics' : (subTime.c >= subTime.m ? 'Chemistry' : 'Maths');
+                    
+                    const displayHours = Math.floor(totalMins / 60);
+                    const displayMins = Math.round(totalMins % 60);
+                    const timeString = `${displayHours}h ${displayMins}m`;
+
+                    html += `<div style="margin-bottom: 50px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                            <h2 style="color:#60a5fa; font-size:1.5rem; display:flex; align-items:center; gap:10px;">📅 ${date}</h2>
+                            <span style="color:#10b981; font-weight:900; font-size:14px;">${eff}% EFFICIENCY</span>
+                        </div>
+                        
+                        <div class="analytics-grid-premium">
+                            <div class="stat-card-premium"><span class="title">Study Intensity</span><span class="value">${timeString}</span></div>
+                            <div class="stat-card-premium"><span class="title">Dominant Sub</span><span class="value" style="color:#60a5fa">${dominator}</span></div>
+                            <div class="stat-card-premium"><span class="title">Toughest Target</span><span class="value" style="font-size:14px; color:#ef4444;">${toughest.name}</span></div>
+                            <div class="stat-card-premium"><span class="title">Mission Split</span><span class="value">${doneCount}/${totalCount} Cleared</span></div>
+                        </div>
+
+                        <div class="subject-stats-container">
+                            <div class="sub-stat-card" style="border-color:#3b82f6;">
+                                <h4><span style="color:#3b82f6">PHYSICS</span> <span>(${subTime.p}m)</span></h4>
+                                ${subjectsData.p.map((x, idx) => `<div class="sub-topic-row"><span>${idx+1}. ${x.name}</span><span>Set: ${x.time}m</span></div>`).join('')}
+                            </div>
+                            <div class="sub-stat-card" style="border-color:#10b981;">
+                                <h4><span style="color:#10b981">CHEMISTRY</span> <span>(${subTime.c}m)</span></h4>
+                                ${subjectsData.c.map((x, idx) => `<div class="sub-topic-row"><span>${idx+1}. ${x.name}</span><span>Set: ${x.time}m</span></div>`).join('')}
+                            </div>
+                            <div class="sub-stat-card" style="border-color:#f59e0b;">
+                                <h4><span style="color:#f59e0b">MATHS</span> <span>(${subTime.m}m)</span></h4>
+                                ${subjectsData.m.map((x, idx) => `<div class="sub-topic-row"><span>${idx+1}. ${x.name}</span><span>Set: ${x.time}m</span></div>`).join('')}
+                            </div>
+                        </div>
+                        <hr style="margin-top:30px; opacity:0.1;">
+                    </div>`;
+                });
+            }
+            content.innerHTML = html;
+            document.getElementById('report-dashboard').style.display = 'block';
+        }
+
+        const quotes = [
             "The second attempt is your chance to shine even brighter! 💫",
             "Your comeback will be stronger than your setback! 💪",
             "IIT Bombay is not a dream, it's a plan in action! 📋",
@@ -351,16 +461,31 @@
             "Prove them wrong. Show them what Arpan can do! 🔥",
             "IIT Bombay: Imagine the feeling of walking through those gates! 💕"
         ];
-        let quoteIndex = 0;
-        setInterval(() => {
-            const motivationElement = document.getElementById('motivation');
-            motivationElement.style.opacity = '0';
-            setTimeout(() => {
-                quoteIndex = (quoteIndex + 1) % motivationalQuotes.length;
-                motivationElement.textContent = motivationalQuotes[quoteIndex];
-                motivationElement.style.opacity = '1';
-            }, 500);
+        let qIdx=0; setInterval(()=>{
+            const el=document.getElementById('motivation'); if(!el) return;
+            el.style.opacity='0';
+            setTimeout(()=>{ qIdx=(qIdx+1)%quotes.length; el.textContent=quotes[qIdx]; el.style.opacity='1'; }, 500);
         }, 8000);
+
+        const text1 = "💕 IIT Bombay - CSE.... Hey, Arpan Imagine This 💕";
+        const text2 = "ɢᴏ ᴀɴᴅ ꜱᴛᴜᴅʏ ᴛᴏ ᴀᴄʜɪᴇᴠᴇ ᴛʜɪꜱ 🤞 ɢᴏᴏᴅ ʟᴜᴄᴋ 💕";
+        let charIndex=0, erasing=false;
+        function type() {
+            const l1=document.getElementById("line1"), l2=document.getElementById("line2");
+            if(!l1 || !l2) return;
+            const full=text1+text2;
+            if(!erasing && charIndex<full.length) {
+                if(charIndex<text1.length) l1.textContent+=text1[charIndex];
+                else l2.textContent+=text2[charIndex-text1.length];
+                charIndex++; setTimeout(type, 100);
+            } else if(erasing && charIndex>0) {
+                if(charIndex>text1.length) l2.textContent=text2.substring(0, charIndex-text1.length-1);
+                else l1.textContent=text1.substring(0, charIndex-1);
+                charIndex--; setTimeout(type, 50);
+            } else { erasing=!erasing; setTimeout(type, 3000); }
+        }
+
+        window.onload = () => { render(); updateExamTimer(); type(); };
     </script>
 </body>
 </html>
