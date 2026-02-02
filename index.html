@@ -307,7 +307,7 @@
         
             <p style="margin-top: 10px; font-size: 0.9rem; color: #cbd5e1;">Claim this reality, Arpan. It's waiting for you.</p>
         </div>
-        </div>
+    </div>
 
     <script>
         const snd = document.getElementById('alarm-snd');
@@ -443,9 +443,20 @@
                         </div>
 
                         <div class="subject-stats-container">
-                            ${['p','c','m'].map(s => `
+                            ${['p','c','m'].map(s => {
+                                let h = Math.floor(subInfo[s].time / 60);
+                                let m = Math.round(subInfo[s].time % 60);
+                                let timeString = (h > 0 ? h + 'h ' : '') + m + 'm';
+
+                                return `
                                 <div class="sub-stat-card" style="border-color:${s==='p'?'#3b82f6':s==='c'?'#10b981':'#f59e0b'}">
-                                    <h4><span>${s==='p'?'PHYSICS':s==='c'?'CHEMISTRY':'MATHS'}</span> <span>${subInfo[s].done}/${subInfo[s].total}</span></h4>
+                                    <h4 style="font-size: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">
+                                        <span>${s==='p'?'PHYSICS':s==='c'?'CHEMISTRY':'MATHS'}</span> 
+                                        <span>
+                                            <span style="opacity:0.8; margin-right:5px;">${subInfo[s].done}/${subInfo[s].total}</span>
+                                            <span style="color:${s==='p'?'#93c5fd':s==='c'?'#6ee7b7':'#fcd34d'}; font-weight:900;">[ ${timeString} ]</span>
+                                        </span>
+                                    </h4>
                                     ${subInfo[s].items.map(x => `
                                         <div class="sub-topic-row ${x.done?'topic-done':'topic-pending'}">
                                             <div style="flex:1;">
@@ -458,7 +469,7 @@
                                         </div>
                                     `).join('')}
                                 </div>
-                            `).join('')}
+                            `}).join('')}
                         </div>
                     </div>`;
                 });
