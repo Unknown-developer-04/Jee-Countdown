@@ -421,6 +421,8 @@
                     ['p','c','m'].forEach(s => {
                         (d[date][s] || []).forEach(i => {
                             totalCount++; 
+                            subInfo[s].total++; // <--- FIXED: Now incrementing total count correctly
+                            
                             let m = (i.originalSec ? i.originalSec : i.sec)/60; 
                             subInfo[s].totalTime += m;
                             totalMins += m;
