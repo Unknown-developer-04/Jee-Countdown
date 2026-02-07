@@ -64,7 +64,6 @@
         }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* MODIFIED MOTIVATION STYLE */
         #motivation {
             font-size: clamp(1.2rem, 5vw, 2.2rem); 
             font-weight: 900; 
@@ -401,11 +400,14 @@
             });
         }
 
+        // --- UPDATED REPORT FUNCTION: SHOWS ALL HISTORY (YEARLY/ALL-TIME) ---
         function openAdvancedReport() {
             const d=JSON.parse(localStorage.getItem('arpan_v5')||'{}');
             const content = document.getElementById('report-content');
             let html = "";
-            const dates = Object.keys(d).sort((a,b)=>new Date(b)-new Date(a)).slice(0, 7);
+            
+            // REMOVED .slice(0, 7) to show ALL available history
+            const dates = Object.keys(d).sort((a,b)=>new Date(b)-new Date(a));
 
             if(dates.length === 0) { html = "<div style='text-align:center; padding:60px; color:#94a3b8;'>No mission logs.</div>"; } 
             else {
@@ -421,7 +423,7 @@
                     ['p','c','m'].forEach(s => {
                         (d[date][s] || []).forEach(i => {
                             totalCount++; 
-                            subInfo[s].total++; // <--- FIXED: Now incrementing total count correctly
+                            subInfo[s].total++; 
                             
                             let m = (i.originalSec ? i.originalSec : i.sec)/60; 
                             subInfo[s].totalTime += m;
