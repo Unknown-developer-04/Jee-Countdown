@@ -244,7 +244,7 @@
         </div>
         
         <div class="countdown-grid">
-            <div class="item-box"><span class="countdown-number" id="days">192</span><br><small>DAYS</small></div>
+            <div class="item-box"><span class="countdown-number" id="days">00</span><br><small>DAYS</small></div>
             <div class="item-box"><span class="countdown-number" id="hours">00</span><br><small>HOURS</small></div>
             <div class="item-box"><span class="countdown-number" id="minutes">00</span><br><small>MINS</small></div>
             <div class="item-box"><span class="countdown-number" id="seconds">00</span><br><small>SECS</small></div>
@@ -319,7 +319,7 @@
         }
 
         function updateExamTimer() {
-            const diff = new Date('2026-04-01T00:00:00') - new Date();
+            const diff = new Date('2027-01-22T00:00:00') - new Date();
             if(diff > 0) {
                 document.getElementById('days').innerText = Math.floor(diff/86400000).toString().padStart(2,'0');
                 document.getElementById('hours').innerText = Math.floor((diff/3600000)%24).toString().padStart(2,'0');
